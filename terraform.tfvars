@@ -1,2 +1,2 @@
-project_id = "REPLACE_ME"
+project_id = "syndeno-sandbox"
 region     = "us-central1"
