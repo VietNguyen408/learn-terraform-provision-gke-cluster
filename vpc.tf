@@ -8,7 +8,6 @@ variable "region" {
 
 variable "gcloud_credentials_file" {
   type    = string
-  default = "syndeno-sandbox-443555d72cd6.json"
 }
 
 provider "google" {
