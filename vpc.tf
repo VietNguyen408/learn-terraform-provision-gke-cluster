@@ -6,7 +6,12 @@ variable "region" {
   description = "region"
 }
 
+variable "gcloud_credentials_file" {
+  type    = string
+}
+
 provider "google" {
+  credentials = var.gcloud_credentials_file
   project = var.project_id
   region  = var.region
 }
