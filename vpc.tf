@@ -8,7 +8,6 @@ variable "region" {
 
 variable "gcloud_credentials_file" {
   type    = string
-  default = ""
 }
 
 provider "google" {
