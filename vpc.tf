@@ -17,7 +17,7 @@ provider "google" {
  # credentials = var.gcloud_credentials_file
   project = var.project_id
   region  = var.region
-  acccess_token = var.access_token
+  access_token = var.access_token
 }
 
 # VPC
