@@ -6,8 +6,8 @@ terraform {
     }
   }
   backend "gcs" {
-    bucket = "tf-viet-testing"
-    prefix = "tfstate-kubernetes"
+    bucket = "syndeno-sandbox-tfstate"
+    prefix = "jenkins"
   }
 }
 
