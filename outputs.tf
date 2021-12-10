@@ -24,6 +24,7 @@ output "kubernetes_client_certificate" {
 
 output "kubernetes_client_key" {
   value = google_container_cluster.primary.master_auth[0].client_key
+  sensitive = true
 }
 
 output "kubernetes_username" {
@@ -32,4 +33,5 @@ output "kubernetes_username" {
 
 output "kubernetes_password" {
   value = google_container_cluster.primary.master_auth[0].password
+  sensitive = true
 }
