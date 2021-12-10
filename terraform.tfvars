@@ -1,2 +1,2 @@
 project_id = "syndeno-sandbox"
-region     = "us-central1"
+region     = "europe-west4"
