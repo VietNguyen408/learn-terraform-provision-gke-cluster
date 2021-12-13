@@ -18,7 +18,7 @@ output "kubernetes_cluster_host" {
   description = "GKE Cluster Host"
 }
 
-output "kubernetes_client_certificate" {
+output "kubernetes_client_ca_certificate" {
   value = google_container_cluster.primary.cluster_ca_certificate
 }
 
