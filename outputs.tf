@@ -19,19 +19,23 @@ output "kubernetes_cluster_host" {
 }
 
 output "kubernetes_client_certificate" {
-  value = google_container_cluster.primary.master_auth[0].client_certificate
+  value = google_container_cluster.primary.cluster_ca_certificate
+}
+
+output "kubernetes_client_certificate" {
+  value = google_container_cluster.primary.client_certificate
 }
 
 output "kubernetes_client_key" {
-  value = google_container_cluster.primary.master_auth[0].client_key
+  value = google_container_cluster.primary.client_key
   sensitive = true
 }
 
 output "kubernetes_username" {
-  value = google_container_cluster.primary.master_auth[0].username
+  value = google_container_cluster.primary.username
 }
 
 output "kubernetes_password" {
-  value = google_container_cluster.primary.master_auth[0].password
+  value = google_container_cluster.primary.password
   sensitive = true
 }
