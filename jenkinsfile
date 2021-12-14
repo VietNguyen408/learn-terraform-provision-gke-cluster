@@ -58,6 +58,7 @@ pipeline {
                     terraform apply --auto-approve
                     terraform output -json
                     echo TF_OUTPUT=$(terraform output) > tf_output.properties
+                    cat tf_output.properties
                     '''
                 }
             }
