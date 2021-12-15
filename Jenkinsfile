@@ -11,7 +11,7 @@ pipeline {
                     properties([
                         parameters([
                             string(
-                                defaultValue: 'learn-terraform-provision-gke-cluster',
+                                defaultValue: 'tf-provision-gke-cluster',
                                 description: 'This parameter decides the name of terraform workspace',
                                 name: 'NAME_TF_WORKSPACE'
                             )
@@ -24,7 +24,7 @@ pipeline {
         stage('Get GCP Access Token') {
             steps {
                 script {
-                    sh '''cd /opt/ServiceAccount
+                    sh '''cd /opt/ServiceAccount/syndeno-sandbox
                     ./accesstoken.sh
                     cat GCP_ACCESS_TOKEN.txt
                     '''
@@ -41,7 +41,7 @@ pipeline {
         stage('Terraform Init') {
             steps {
                 script {
-                    sh '''export TF_VAR_access_token=$(cat /opt/ServiceAccount/GCP_ACCESS_TOKEN.txt)
+                    sh '''export TF_VAR_access_token=$(cat /opt/ServiceAccount/syndeno-sandbox/GCP_ACCESS_TOKEN.txt)
                     terraform init -reconfigure -force-copy -backend-config="access_token=$TF_VAR_access_token" || terraform init -migrate-state -force-copy -backend-config="access_token=$TF_VAR_access_token"
                     terraform workspace select ${NAME_TF_WORKSPACE} || terraform workspace new ${NAME_TF_WORKSPACE} 
                     terraform workspace show
@@ -54,7 +54,7 @@ pipeline {
         stage('Terraform Apply') {
             steps {
                 script {
-                    sh '''export TF_VAR_access_token=$(cat /opt/ServiceAccount/GCP_ACCESS_TOKEN.txt)
+                    sh '''export TF_VAR_access_token=$(cat /opt/ServiceAccount/syndeno-sandbox/GCP_ACCESS_TOKEN.txt)
                     terraform apply --auto-approve
                     terraform output -json
                     echo TF_OUTPUT=$(terraform output) > tf_output.properties
