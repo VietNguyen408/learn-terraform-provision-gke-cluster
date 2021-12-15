@@ -59,8 +59,8 @@ pipeline {
                     export TF_VAR_access_token=$(cat /opt/ServiceAccount/syndeno-sandbox/GCP_ACCESS_TOKEN.txt)
                     terraform apply --auto-approve
                     terraform output
-                    echo TF_OUTPUT=$(terraform output) > tf_output.properties
-                    cat tf_output.properties
+                    echo TF_OUTPUT=$(terraform output) > tf_output.txt
+                    cat tf_output.txt
                     '''
                 }
             }
@@ -68,7 +68,7 @@ pipeline {
     }
     post {
             always {
-                archiveArtifacts artifacts: 'tf_output.properties', onlyIfSuccessful: true
+                archiveArtifacts artifacts: 'tf_output.txt', onlyIfSuccessful: true
             }
         }
 }
