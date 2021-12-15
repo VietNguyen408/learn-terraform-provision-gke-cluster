@@ -64,11 +64,11 @@ pipeline {
                     '''
                 }
             }
-        }
-        post {
+        }  
+    }
+    post {
             always {
                 archiveArtifacts artifacts: 'tf_output.properties', onlyIfSuccessful: true
             }
         }
-    }
 }
