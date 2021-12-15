@@ -44,7 +44,7 @@ pipeline {
                     sh '''
                     export TF_VAR_access_token=$(cat /opt/ServiceAccount/syndeno-sandbox/GCP_ACCESS_TOKEN.txt)
                     terraform init -reconfigure -force-copy -backend-config="access_token=$TF_VAR_access_token" || terraform init -migrate-state -force-copy -backend-config="access_token=$TF_VAR_access_token"
-                    terraform workspace select ${NAME_TF_WORKSPACE} || terraform workspace new ${NAME_TF_WORKSPACE} 
+                    terraform workspace select ${NAME_TF_WORKSPACE} || terraform workspace new ${NAME_TF_WORKSPACE}
                     terraform workspace show
                     terraform workspace list
                     '''
@@ -58,11 +58,16 @@ pipeline {
                     sh '''
                     export TF_VAR_access_token=$(cat /opt/ServiceAccount/syndeno-sandbox/GCP_ACCESS_TOKEN.txt)
                     terraform apply --auto-approve
-                    terraform output -json
+                    terraform output
                     echo TF_OUTPUT=$(terraform output) > tf_output.properties
                     cat tf_output.properties
                     '''
                 }
+            }
+        }
+        post {
+            always {
+                archiveArtifacts artifacts: 'tf_output.properties', onlyIfSuccessful: true
             }
         }
     }
