@@ -57,7 +57,6 @@ pipeline {
                 script {
                     sh '''
                     export TF_VAR_access_token=$(cat /opt/ServiceAccount/syndeno-sandbox/GCP_ACCESS_TOKEN.txt)
-                    terraform state mv
                     terraform apply --auto-approve
                     terraform output -json
                     echo TF_OUTPUT=$(terraform output) > tf_output.properties
