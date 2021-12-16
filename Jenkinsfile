@@ -58,8 +58,8 @@ pipeline {
                     sh '''
                     export TF_VAR_access_token=$(cat /opt/ServiceAccount/syndeno-sandbox/GCP_ACCESS_TOKEN.txt)
                     terraform apply --auto-approve
-                    terraform output -raw kubernetes_cluster_host kubernetes_cluster_name project_id region
-                    terraform output -json > tf_output.txt
+                    terraform output 
+                    terraform output  > tf_output.txt
                     cat tf_output.txt
                     '''
                 }
