@@ -5,15 +5,15 @@ variable "project_id" {
 variable "region" {
   description = "region"
 }
-
+/*
 variable "access_token"{
   type = string 
 }
-
+*/
 provider "google" {
   project = var.project_id
   region  = var.region
-  access_token = var.access_token
+#  access_token = var.access_token
 }
 
 # VPC

@@ -63,11 +63,11 @@ pipeline {
                     '''
                 }
             }
-        }  
+        }
     }
     post {
             always {
                 archiveArtifacts artifacts: 'tf_output.txt', onlyIfSuccessful: true
             }
-        }
+    }
 }
